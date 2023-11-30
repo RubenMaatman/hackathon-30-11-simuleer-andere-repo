@@ -42,7 +42,7 @@ jobs:
       - uses: "RubenMaatman/hackathon-30-11-test-complexe-workflow/deploy-omgeving@main"
         id: deploy-action-letsgoooo
         with:
-          deploy-string: ${{ github.event.inputs.deploy_to }}
+          deploy_string: ${{ github.event.inputs.deploy_to }}
           screenit_of_peridos: ScreenIT
           omgeving: ${{ matrix.omgeving }}
           runbook_naam: ${{ matrix.runbook_naam }}
