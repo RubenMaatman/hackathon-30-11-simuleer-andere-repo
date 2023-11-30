@@ -1,16 +1,20 @@
 name: CI (mulatie) build
-inputs:
-  deploy_to:
-    type: string
-    description: Welke omgevingen wil je deployen? acc, tst1, tst2, tst3, tst4
-    required: true
 
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_to:
+        type: string
+        description: Welke omgevingen wil je deployen? acc, tst1, tst2, tst3, tst4
+        required: true
 
 
 run-name: Deploy naar ${{ github.event.inputs.deploy_to }}
 
 jobs:
   deploy:
+    if: always()
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
@@ -21,19 +25,25 @@ jobs:
           - zoek_string_voor_omgeving: tst1
             runbook_of_release: runbook
             omgeving: test
-            runbook_naam: "nope"
+            runbook_naam: "deploy test 1"
           - zoek_string_voor_omgeving: tst2
             runbook_of_release: runbook
             omgeving: test
-            runbook_naam: "nope"
+            runbook_naam: "deploy test 2"
           - zoek_string_voor_omgeving: tst3
             runbook_of_release: runbook
             omgeving: test
-            runbook_naam: "nope"
+            runbook_naam: "deploy test 3"
           - zoek_string_voor_omgeving: tst4
             runbook_of_release: runbook
             omgeving: test
-            runbook_naam: "nope"
+            runbook_naam: "deploy test 4"
     steps:
-      - uses: ruben-maatman
-
+      - uses: "RubenMaatman/hackathon-30-11-test-complexe-workflow/deploy-omgeving@main"
+        id: deploy-action-letsgoooo
+        with:
+          deploy-string: ${{ github.event.inputs.deploy_to }}
+          screenit_of_peridos: ScreenIT
+          omgeving: ${{ matrix.omgeving }}
+          runbook_naam: ${{ matrix.runbook_naam }}
+          zoek_string_voor_omgeving: ${{ matrix.zoek_string_voor_omgeving }}
