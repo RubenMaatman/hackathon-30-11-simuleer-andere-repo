@@ -1,0 +1,39 @@
+name: CI (mulatie) build
+inputs:
+  deploy_to:
+    type: string
+    description: Welke omgevingen wil je deployen? acc, tst1, tst2, tst3, tst4
+    required: true
+
+
+
+run-name: Deploy naar ${{ github.event.inputs.deploy_to }}
+
+jobs:
+  deploy:
+    strategy:
+      matrix:
+        include:
+          - zoek_string_voor_omgeving: acc
+            runbook_of_release: release
+            omgeving: acc
+            runbook_naam: "nope"
+          - zoek_string_voor_omgeving: tst1
+            runbook_of_release: runbook
+            omgeving: test
+            runbook_naam: "nope"
+          - zoek_string_voor_omgeving: tst2
+            runbook_of_release: runbook
+            omgeving: test
+            runbook_naam: "nope"
+          - zoek_string_voor_omgeving: tst3
+            runbook_of_release: runbook
+            omgeving: test
+            runbook_naam: "nope"
+          - zoek_string_voor_omgeving: tst4
+            runbook_of_release: runbook
+            omgeving: test
+            runbook_naam: "nope"
+    steps:
+      - uses: ruben-maatman
+
