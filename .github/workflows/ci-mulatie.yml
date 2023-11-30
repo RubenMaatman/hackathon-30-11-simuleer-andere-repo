@@ -47,3 +47,4 @@ jobs:
           omgeving: ${{ matrix.omgeving }}
           runbook_naam: ${{ matrix.runbook_naam }}
           zoek_string_voor_omgeving: ${{ matrix.zoek_string_voor_omgeving }}
+          runbook_of_release: ${{ matrix.runbook_of_release }}
