@@ -1,0 +1,16 @@
+name: Test steps met if statements in composite actions
+on:
+  workflow_dispatch:
+jobs:
+  test-if-statement-in-step:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: RubenMaatman/hackathon-30-11-test-complexe-workflow/test-if-statement-step@main
+        with:
+          tekstzoek: "De string waar we de tekst in zoeken, hier het woord pannenkoek"
+          zoektekst: "pannenkoek"
+      - uses: RubenMaatman/hackathon-30-11-test-complexe-workflow/test-if-statement-step@main
+        with:
+          tekstzoek: "De string waar we de tekst in zoeken, hier het woord pannenkoek"
+          zoektekst: "pannenbroek"
